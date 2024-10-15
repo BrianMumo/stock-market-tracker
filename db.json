@@ -1,0 +1,10 @@
+{
+    "stocks": [
+      { "id": 1, "name": "Apple", "symbol": "AAPL", "price": 150 },
+      { "id": 2, "name": "Google", "symbol": "GOOGL", "price": 2800 },
+      { "id": 3, "name": "Microsoft", "symbol": "MSFT", "price": 300 },
+      { "id": 4, "name": "Amazon", "symbol": "AMZN", "price": 3500 },
+      { "id": 5, "name": "Tesla", "symbol": "TSLA", "price": 700 }
+    ]
+  }
+  

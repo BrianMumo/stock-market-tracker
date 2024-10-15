@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Tracker</title>
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
-    <title>Stock Market Tracker</title>
 </head>
 <body>
-    <header>Stock Market Tracker</header>
-<main>
-    <section id="search-section">
-        <input type="text" id="search-bar" placeholder="Search for a stock...">
-        <button id="search-button">Search</button>
-    </section>
-    <section id="stock-info"></section>
-    <section id="watchlist"></section>
-</main>
-<footer>&copy; 2024 Stock Tracker</footer>
+    <header>
+        <h1>Stock Market Tracker</h1>
+    </header>
 
+    <main>
+        <section id="filter-section">
+            <h2>Filter by Price Range</h2>
+            <input type="number" id="min-price" placeholder="Min Price">
+            <input type="number" id="max-price" placeholder="Max Price">
+            <button id="filter-button">Filter</button>
+        </section>
+
+        <section id="stock-info">
+            <h2>Stocks</h2>
+            <div id="stock-list">
+                <!-- Stock data will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Stock Market Tracker</p>
+    </footer>
 </body>
 </html>
