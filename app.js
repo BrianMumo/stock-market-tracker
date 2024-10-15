@@ -40,17 +40,17 @@ function displayFilteredStocks(stocks) {
     });
 }
 
-// Function to fetch stock data (to be replaced with real API call)
+// Function to fetch stock data from a public API
 function fetchStockData() {
-    // Replace this mock data fetch with a real API fetch
-    displayFilteredStocks([
-        { name: 'Apple', symbol: 'AAPL', price: 150 },
-        { name: 'Google', symbol: 'GOOGL', price: 2800 },
-        { name: 'Microsoft', symbol: 'MSFT', price: 300 },
-        { name: 'Amazon', symbol: 'AMZN', price: 3500 },
-        { name: 'Tesla', symbol: 'TSLA', price: 700 }
-    ]);
+    fetch('https://api.example.com/stock-data') // Replace with a real API URL
+        .then(response => response.json())
+        .then(data => {
+            // Assuming the API returns an array of stock objects
+            displayFilteredStocks(data);
+        })
+        .catch(error => console.error('Error fetching stock data:', error));
 }
 
 // Fetch and display stock data on initial load
 fetchStockData();
+
