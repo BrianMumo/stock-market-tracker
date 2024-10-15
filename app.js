@@ -1,56 +1,22 @@
-// Event listener for filter button
-document.querySelector('#filter-button').addEventListener('click', filterStocksByPrice);
+// Event listeners for sorting buttons
+document.querySelector('#sort-name').addEventListener('click', () => sortStocks('name'));
+document.querySelector('#sort-price').addEventListener('click', () => sortStocks('price'));
 
-// Function to filter stocks based on the price range
-function filterStocksByPrice() {
-    const minPrice = parseFloat(document.querySelector('#min-price').value);
-    const maxPrice = parseFloat(document.querySelector('#max-price').value);
-
-    // Mock stock data (replace with fetched data)
-    const mockStocks = [
-        { name: 'Apple', symbol: 'AAPL', price: 150 },
-        { name: 'Google', symbol: 'GOOGL', price: 2800 },
-        { name: 'Microsoft', symbol: 'MSFT', price: 300 },
-        { name: 'Amazon', symbol: 'AMZN', price: 3500 },
-        { name: 'Tesla', symbol: 'TSLA', price: 700 }
-    ];
-
-    const filteredStocks = mockStocks.filter(stock => {
-        if (isNaN(minPrice) && isNaN(maxPrice)) return true;
-        if (!isNaN(minPrice) && stock.price < minPrice) return false;
-        if (!isNaN(maxPrice) && stock.price > maxPrice) return false;
-        return true;
+// Function to sort stocks by a given attribute
+function sortStocks(attribute) {
+    const stockList = Array.from(document.querySelectorAll('#stock-list > div'));
+    stockList.sort((a, b) => {
+        if (attribute === 'name') {
+            return a.querySelector('h2').textContent.localeCompare(b.querySelector('h2').textContent);
+        } else if (attribute === 'price') {
+            const priceA = parseFloat(a.querySelector('p').textContent.replace('Current Price: $', ''));
+            const priceB = parseFloat(b.querySelector('p').textContent.replace('Current Price: $', ''));
+            return priceA - priceB;
+        }
     });
 
-    displayFilteredStocks(filteredStocks);
+    // Clear and re-append sorted elements
+    const stockContainer = document.querySelector('#stock-list');
+    stockContainer.innerHTML = '';
+    stockList.forEach(stock => stockContainer.appendChild(stock));
 }
-
-// Function to display stocks on the page
-function displayFilteredStocks(stocks) {
-    const stockList = document.querySelector('#stock-list');
-    stockList.innerHTML = ''; // Clear previous results
-
-    stocks.forEach(stock => {
-        const stockElement = document.createElement('div');
-        stockElement.innerHTML = `
-            <h2>${stock.name} (${stock.symbol})</h2>
-            <p>Current Price: $${stock.price}</p>
-        `;
-        stockList.appendChild(stockElement);
-    });
-}
-
-// Function to fetch stock data from a public API
-function fetchStockData() {
-    fetch('https://api.example.com/stock-data') // Replace with a real API URL
-        .then(response => response.json())
-        .then(data => {
-            // Assuming the API returns an array of stock objects
-            displayFilteredStocks(data);
-        })
-        .catch(error => console.error('Error fetching stock data:', error));
-}
-
-// Fetch and display stock data on initial load
-fetchStockData();
-
