@@ -10,21 +10,39 @@
 <body>
     <header>
         <h1>Stock Market Tracker</h1>
+        <button id="dark-mode-toggle">Toggle Dark Mode</button>
     </header>
 
     <main>
+        <section id="search-section">
+            <h2>Search Stocks</h2>
+            <input type="text" id="search-bar" placeholder="Search by name">
+        </section>
+
+        <section id="filter-section">
+            <h2>Filter by Price Range</h2>
+            <input type="number" id="min-price" placeholder="Min Price">
+            <input type="number" id="max-price" placeholder="Max Price">
+            <button id="filter-button">Apply Filter</button>
+        </section>
+
         <section id="sort-section">
             <h2>Sort Stocks</h2>
             <button id="sort-name">Sort by Name</button>
             <button id="sort-price">Sort by Price</button>
         </section>
 
-        <section id="search-section">
-            <h2>Search Stocks</h2>
-            <input type="text" id="search-bar" placeholder="Search by name">
+        <section id="stock-list">
+            <!-- Stock data will be dynamically added here -->
         </section>
-        
-        
+
+        <section id="add-stock">
+            <h2>Add a New Stock</h2>
+            <input type="text" id="new-stock-name" placeholder="Stock Name">
+            <input type="text" id="new-stock-symbol" placeholder="Stock Symbol">
+            <input type="number" id="new-stock-price" placeholder="Stock Price">
+            <button id="add-stock-button">Add Stock</button>
+        </section>
     </main>
 
     <footer>

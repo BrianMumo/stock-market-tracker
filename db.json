@@ -1,10 +1,22 @@
 {
-    "stocks": [
-      { "id": 1, "name": "Apple", "symbol": "AAPL", "price": 150 },
-      { "id": 2, "name": "Google", "symbol": "GOOGL", "price": 2800 },
-      { "id": 3, "name": "Microsoft", "symbol": "MSFT", "price": 300 },
-      { "id": 4, "name": "Amazon", "symbol": "AMZN", "price": 3500 },
-      { "id": 5, "name": "Tesla", "symbol": "TSLA", "price": 700 }
-    ]
-  }
-  
+  "stocks": [
+    {
+      "id": "718a",
+      "name": "Gold",
+      "symbol": "Xauusd",
+      "price": 2800,
+      "high": 2810,
+      "low": 2790,
+      "open": 2800
+    },
+    {
+      "id": "6ade",
+      "name": "Gold ",
+      "symbol": "XAUUSD",
+      "price": 2700,
+      "high": 2710,
+      "low": 2690,
+      "open": 2700
+    }
+  ]
+}
