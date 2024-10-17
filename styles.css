@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,9 +16,15 @@ body {
     color: white;
   }
   
-  input {
+  .controls {
+    display: flex;
+    gap: 10px;
+  }
+  
+  input, select {
     padding: 10px;
-    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
   }
   
   #crypto-container {
@@ -33,15 +40,64 @@ body {
     border-radius: 10px;
     text-align: center;
     background-color: #f9f9f9;
+    color: black;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .dark-mode {
-    background-color: #333;
-    color: white;
+  .crypto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
   
   button {
     padding: 10px 20px;
     cursor: pointer;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #f1f1f1;
+  }
+  
+  #loading {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+    display: none;
+  }
+  
+  #crypto-details {
+    padding: 20px;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+  }
+  
+  /* Dark Mode Styles */
+  .dark-mode {
+    background-color: #333;
+    color: white;
+  }
+  
+  .dark-mode .crypto-card {
+    background-color: #444;
+    color: white;
+  }
+  
+  .dark-mode header {
+    background-color: #111;
+    color: white;
+  }
+  
+  .dark-mode input, .dark-mode select, .dark-mode button {
+    background-color: #282c34;
+    color: white;
+    border: 1px solid #555;
+  }
+  
+  .dark-mode button:hover {
+    background-color: #3a3f47;
   }
   
