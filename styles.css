@@ -1,10 +1,10 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: white;
-    color: black;
+    background-color: #f8f9fa;
+    color: #212529;
   }
   
   header {
@@ -12,8 +12,9 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #282c34;
+    background-color: #007bff;
     color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
   
   .controls {
@@ -25,41 +26,63 @@ body {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    font-size: 16px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  input:focus, select:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
   }
   
   #crypto-container {
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   .crypto-card {
-    border: 1px solid #ccc;
-    padding: 15px;
+    border: 1px solid #ddd;
+    padding: 20px;
     border-radius: 10px;
     text-align: center;
-    background-color: #f9f9f9;
-    color: black;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 16px;
   }
   
   .crypto-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .crypto-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #007bff;
+  }
+  
+  .crypto-card p {
+    font-size: 1rem;
+    margin: 5px 0;
   }
   
   button {
-    padding: 10px 20px;
+    padding: 10px 15px;
+    font-size: 16px;
     cursor: pointer;
-    background-color: #ffffff;
-    color: #000000;
-    border: 1px solid #ccc;
+    background-color: #007bff;
+    color: white;
+    border: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
   }
   
   button:hover {
-    background-color: #f1f1f1;
+    background-color: #0056b3;
   }
   
   #loading {
@@ -69,35 +92,60 @@ body {
     display: none;
   }
   
+  #pagination {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  #pagination button {
+    background-color: #f8f9fa;
+    color: #007bff;
+    border: 1px solid #007bff;
+    margin: 0 5px;
+  }
+  
   #crypto-details {
     padding: 20px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #ddd;
+    background-color: #f8f9fa;
     margin-top: 20px;
+    font-size: 18px;
   }
   
   /* Dark Mode Styles */
   .dark-mode {
     background-color: #333;
-    color: white;
+    color: #f1f1f1;
   }
   
   .dark-mode .crypto-card {
     background-color: #444;
-    color: white;
+    color: #f1f1f1;
+    border: 1px solid #555;
   }
   
   .dark-mode header {
-    background-color: #111;
+    background-color: #222;
     color: white;
   }
   
   .dark-mode input, .dark-mode select, .dark-mode button {
-    background-color: #282c34;
+    background-color: #444;
     color: white;
     border: 1px solid #555;
   }
   
   .dark-mode button:hover {
-    background-color: #3a3f47;
+    background-color: #555;
+  }
+  
+  .dark-mode .crypto-card:hover {
+    background-color: #555;
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
+  }
+  
+  .dark-mode #crypto-details {
+    background-color: #444;
+    color: #f1f1f1;
   }
   
