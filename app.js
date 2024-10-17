@@ -1,27 +1,29 @@
 let currentPage = 1;
 let currency = 'usd';
 let cryptos = [];
+let allCryptos = [];
 
-// Fetch crypto data from the CoinGecko API
-async function fetchCryptos(currency = 'usd', page = 1) {
-  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=10&page=${page}`;
-  const loadingIndicator = document.getElementById('loading');
-  loadingIndicator.style.display = 'block';  // Show loading
+// Fetch all crypto data from multiple pages
+async function fetchAllCryptos(currency = 'usd') {
+  let page = 1;
+  let hasMoreData = true;
+  allCryptos = [];
 
-  try {
-    const response = await fetch(url);
-    cryptos = await response.json();
-    loadingIndicator.style.display = 'none';  // Hide loading
-    displayCryptos(cryptos);  // Display fetched data on the page
-    return cryptos;  // Return the data for further usage (e.g., search and sort)
-  } catch (error) {
-    loadingIndicator.style.display = 'none';  // Hide loading
-    document.getElementById('crypto-container').innerHTML = '<p>Failed to load data. Please try again later.</p>';
-    console.error('Error fetching cryptos:', error);
+  while (hasMoreData) {
+    const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=10&page=${page}`);
+    const data = await response.json();
+
+    if (data.length > 0) {
+      allCryptos = [...allCryptos, ...data];
+      page++;
+    } else {
+      hasMoreData = false;
+    }
   }
+
+  displayCryptos(allCryptos);  // Display data after fetching all pages
 }
 
-// Display the crypto data on the page
 function displayCryptos(cryptos) {
   const container = document.getElementById('crypto-container');
   container.innerHTML = '';  // Clear previous data
@@ -44,7 +46,7 @@ function displayCryptos(cryptos) {
 // Event listener for search input
 document.getElementById('search-input').addEventListener('input', function (e) {
   const searchTerm = e.target.value.toLowerCase();
-  const filteredCryptos = cryptos.filter(crypto =>
+  const filteredCryptos = allCryptos.filter(crypto =>
     crypto.name.toLowerCase().includes(searchTerm) || crypto.symbol.toLowerCase().includes(searchTerm)
   );
   displayCryptos(filteredCryptos);
@@ -65,25 +67,20 @@ document.getElementById('sort-options').addEventListener('change', function (e) 
 // Event listener for currency selection
 document.getElementById('currency-options').addEventListener('change', function (e) {
   currency = e.target.value;
-  fetchCryptos(currency, currentPage);  // Fetch data in the selected currency
-});
-
-// Event listener for dark/light mode toggle
-document.getElementById('toggle-mode').addEventListener('click', function () {
-  document.body.classList.toggle('dark-mode');  // Toggle dark mode class on the body element
+  fetchAllCryptos(currency);  // Fetch data in the selected currency
 });
 
 // Pagination controls
 document.getElementById('next-page').addEventListener('click', () => {
   currentPage++;
-  fetchCryptos(currency, currentPage);
+  fetchAllCryptos(currency);
   document.getElementById('previous-page').disabled = false;
 });
 
 document.getElementById('previous-page').addEventListener('click', () => {
   if (currentPage > 1) {
     currentPage--;
-    fetchCryptos(currency, currentPage);
+    fetchAllCryptos(currency);
   }
   if (currentPage === 1) {
     document.getElementById('previous-page').disabled = true;
@@ -115,7 +112,7 @@ async function showCryptoDetails(cryptoId) {
     <p>24h High: $${cryptoDetails.high_24h}</p>
     <p>24h Low: $${cryptoDetails.low_24h}</p>
     <p>Circulating Supply: ${cryptoDetails.circulating_supply.toLocaleString()}</p>
-    <canvas id="price-chart"></canvas>
+    <canvas id="price-comparison-chart"></canvas>
   `;
 
   // Fetch and display historical data
@@ -132,7 +129,7 @@ async function fetchHistoricalData(cryptoId) {
 
 // Display price chart using Chart.js
 function displayPriceChart(data) {
-  const ctx = document.getElementById('price-chart').getContext('2d');
+  const ctx = document.getElementById('price-comparison-chart').getContext('2d');
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -147,5 +144,10 @@ function displayPriceChart(data) {
   });
 }
 
-// Initial call to fetch and display cryptos
-fetchCryptos();
+// Polling every 60 seconds to fetch updated data
+setInterval(() => {
+  fetchAllCryptos(currency);
+}, 60000);  // Fetch new data every minute
+
+// Initial call to fetch all cryptos
+fetchAllCryptos();
