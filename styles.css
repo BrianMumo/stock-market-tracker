@@ -1,109 +1,47 @@
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Styling for Body */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    padding: 20px;
-}
-
-/* Main Container Styling */
-main {
-    max-width: 1200px; /* Set a maximum width for the main content */
-    margin: 0 auto;    /* Center the main content horizontally */
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center text inside the main section */
-}
-
-/* Header Styles */
-header {
-    background-color: #4caf50;
-    padding: 10px 20px;
-    color: #fff;
-    border-radius: 10px 10px 0 0;
-    text-align: center; /* Center the content of the header */
-}
-
-/* Center the h1 text */
-header h1 {
     margin: 0;
-    text-align: center;
-}
-
-/* Main Content Styling */
-main > section {
-    margin-top: 20px;
-}
-
-/* Search, Sort, and Filter Sections */
-#search-section, #sort-section, #filter-section {
-    margin-bottom: 20px;
+    padding: 0;
+    background-color: white;
+    color: black;
+  }
+  
+  header {
     display: flex;
-    justify-content: center; /* Center form elements horizontally */
+    justify-content: space-between;
     align-items: center;
-    gap: 10px; /* Add space between input and button */
-}
-
-/* Stock List */
-#stock-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; /* Center the stock items */
-}
-
-/* Stock Item Styles */
-#stock-list > div {
-    background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: calc(33.333% - 20px);
-}
-
-/* Add Stock Section */
-#add-stock {
-    margin-top: 20px;
-    text-align: center; /* Center text inside the add stock section */
-}
-
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #121212;
-    color: #f5f5f5;
-}
-
-.dark-mode header {
-    background-color: #222;
-}
-
-/* Button Styles */
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: #fff;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-/* Footer Styles */
-footer {
-    margin-top: 40px;
+    background-color: #282c34;
+    color: white;
+  }
+  
+  input {
+    padding: 10px;
+    width: 300px;
+  }
+  
+  #crypto-container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .crypto-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
     text-align: center;
-    font-size: 0.9em;
-    color: #888;
-}
+    background-color: #f9f9f9;
+  }
+  
+  .dark-mode {
+    background-color: #333;
+    color: white;
+  }
+  
+  button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
