@@ -1,6 +1,3 @@
-Sure! Here's an example of a **README** file for your **Crypto Market Tracker** project. This README provides a comprehensive overview of the project, including its purpose, setup instructions, and features.
-
----
 
 ## **Crypto Market Tracker**
 
